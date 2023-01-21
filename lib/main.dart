@@ -1,5 +1,8 @@
-import 'package:calculator_app/home.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'package:calculator_app/providers/home_provider.dart';
+import 'package:calculator_app/screens/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +19,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Home(title: 'Flutter calculator app'),
+      home: ChangeNotifierProvider(
+        create: (context) => HomeProvider(),
+        child: const HomeScreen(title: "Calculator home page"),
+      ),
     );
   }
 }
