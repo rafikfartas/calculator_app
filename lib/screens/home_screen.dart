@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatelessWidget {
   final String title;
@@ -6,6 +7,13 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Consumer(
+      builder: (context, value, child) => Scaffold(
+        appBar: AppBar(
+          title: Text(title),
+        ),
+        body: Container(),
+      ),
+    );
   }
 }

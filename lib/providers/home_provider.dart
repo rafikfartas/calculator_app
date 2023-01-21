@@ -1,3 +1,5 @@
 import 'package:flutter/cupertino.dart';
 
-class HomeProvider with ChangeNotifier {}
+class HomeProvider with ChangeNotifier {
+  HomeProvider();
+}

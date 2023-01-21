@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ChangeNotifierProvider(
+      home: ChangeNotifierProvider<HomeProvider>(
         create: (context) => HomeProvider(),
         child: const HomeScreen(title: "Calculator home page"),
       ),
