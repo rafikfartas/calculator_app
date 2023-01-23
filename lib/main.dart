@@ -1,7 +1,9 @@
+import 'package:calculator_app/data/colors.dart';
+import 'package:calculator_app/providers/home_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:calculator_app/providers/home_provider.dart';
+import 'package:calculator_app/providers/theme_provider.dart';
 import 'package:calculator_app/screens/home_screen.dart';
 
 void main() {
@@ -17,10 +19,20 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter calculator app',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        colorSchemeSeed: Palette.blue,
+        useMaterial3: true,
+        fontFamily: "Montserrat",
       ),
-      home: ChangeNotifierProvider<HomeProvider>(
-        create: (context) => HomeProvider(),
+      debugShowCheckedModeBanner: false,
+      home: MultiProvider(
+        providers: [
+          ChangeNotifierProvider<ThemeProvider>(
+            create: (context) => ThemeProvider(),
+          ),
+          ChangeNotifierProvider<HomeProvider>(
+            create: (context) => HomeProvider(),
+          ),
+        ],
         child: const HomeScreen(title: "Calculator home page"),
       ),
     );
