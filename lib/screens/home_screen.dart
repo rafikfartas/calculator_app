@@ -66,34 +66,49 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
             Container(
-              padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 20),
-              color: Colors.blue,
+              padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
               child: Text(
                 "023",
-                style: Theme.of(context)
-                    .textTheme
-                    .headline1!
-                    .copyWith(color: Colors.blueGrey.shade900),
+                style: Theme.of(context).textTheme.headline1!.copyWith(
+                      color: Colors.blueGrey.shade900,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 4,
+                    ),
                 textDirection: TextDirection.rtl,
               ),
             ),
             Expanded(
               child: Container(
-                color: Colors.amberAccent,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade100,
+                  borderRadius: const BorderRadius.only(
+                    topRight: radius25,
+                    topLeft: radius25,
+                  ),
+                ),
                 child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 4,
                   ),
                   itemCount: data.length,
                   itemBuilder: ((context, index) => Container(
-                        margin: const EdgeInsets.all(10),
-                        color: Colors.amber,
+                        margin: const EdgeInsets.all(12),
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade200,
+                          borderRadius: borderRadius15,
+                        ),
                         child: Center(
                           child: InkWell(
                             onTap: () {},
                             child: Text(
                               data[index]['char'],
-                              style: Theme.of(context).textTheme.headline5,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .headline6!
+                                  .copyWith(
+                                    fontWeight: FontWeight.w600,
+                                    color: textColors[data[index]['color']],
+                                  ),
                             ),
                           ),
                         ),
