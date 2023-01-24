@@ -1,4 +1,5 @@
 import 'package:calculator_app/data/data.dart';
+import 'package:calculator_app/providers/home_provider.dart';
 import 'package:calculator_app/providers/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -9,8 +10,10 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeProvider>(
-      builder: (context, ThemeProvider themeProvider, child) => Scaffold(
+    return Consumer2<ThemeProvider, HomeProvider>(
+      builder: (context, ThemeProvider themeProvider, HomeProvider homeProvider,
+              child) =>
+          Scaffold(
         backgroundColor: Colors.white,
         body: Column(
           mainAxisAlignment: MainAxisAlignment.end,
@@ -25,7 +28,7 @@ class HomeScreen extends StatelessWidget {
                       child: Container(
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
-                          color: Colors.grey.shade200,
+                          color: Colors.grey.shade100,
                           borderRadius: const BorderRadius.only(
                             topLeft: radius15,
                             bottomLeft: radius15,
@@ -37,7 +40,7 @@ class HomeScreen extends StatelessWidget {
                             Icons.light_mode_outlined,
                             color: themeProvider.selectonIndex == 1
                                 ? Colors.blueGrey.shade900
-                                : Colors.grey,
+                                : Colors.grey.shade300,
                           ),
                         ),
                       ),
@@ -45,7 +48,7 @@ class HomeScreen extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                        color: Colors.grey.shade200,
+                        color: Colors.grey.shade100,
                         borderRadius: const BorderRadius.only(
                           topRight: radius15,
                           bottomRight: radius15,
@@ -57,7 +60,7 @@ class HomeScreen extends StatelessWidget {
                           Icons.dark_mode_outlined,
                           color: themeProvider.selectonIndex == 2
                               ? Colors.blueGrey.shade900
-                              : Colors.grey,
+                              : Colors.grey.shade300,
                         ),
                       ),
                     ),
@@ -68,7 +71,9 @@ class HomeScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
               child: Text(
-                "023",
+                homeProvider.num1.toString(),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
                 style: Theme.of(context).textTheme.headline1!.copyWith(
                       color: Colors.blueGrey.shade900,
                       fontWeight: FontWeight.w600,
@@ -99,7 +104,8 @@ class HomeScreen extends StatelessWidget {
                         ),
                         child: Center(
                           child: InkWell(
-                            onTap: () {},
+                            onTap: () =>
+                                homeProvider.onClick(data[index]['char']),
                             child: Text(
                               data[index]['char'],
                               style: Theme.of(context)
